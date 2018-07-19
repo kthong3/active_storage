@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    if @post.valid?
+    if @post.save
       redirect_to @post
     else
      flash[:errors] = @post.errors.full_messages
@@ -41,6 +41,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:description, images: [])
+    params.require(:post).permit(:description, :image)
   end
 end
